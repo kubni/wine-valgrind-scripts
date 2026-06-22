@@ -174,7 +174,7 @@ vendor="$(glxinfo | grep 'OpenGL vendor string:' | cut -d: -f2)"
     *Intel*|*INTEL*|*intel*) graphics_vendor="intel"; graphics_suppressions="--suppressions=$WINESRC/tools/valgrind/valgrind-suppressions-intel";;
     *Nvidia*|*NVIDIA*|*nvidia*) graphics_vendor="nvidia";;
     *nouveau*) graphics_vendor="nouveau";;
-    *) "echo unknown graphics vendor!" ; graphics_vendor="unknown";;
+    *) echo "unknown graphics vendor!" ; graphics_vendor="unknown";;
 esac
 
 echo "graphics vendor is $graphics_vendor / graphics card is $graphics_card"
