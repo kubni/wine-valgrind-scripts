@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Wrapper around checkbashisms/shellcheck/whatever other shell checkers I can find
 #
 # Copyright (C) 2016-2019 Austin English

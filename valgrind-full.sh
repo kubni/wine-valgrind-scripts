@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # shellcheck disable=SC2129
 #
 # Script to run wine's conformance tests under valgrind
@@ -148,16 +148,17 @@ export WINEDEBUG=-all
 echo "started with: $0 $*" > "$logfile"
 echo "HEAD is:" >> "$logfile"
 echo "================Wine info================" >> "$logfile"
-git log -n 1 HEAD >> "$logfile"
+# NOTE: Temporarily commented out because it fills the log file with millions of lines
+# git log -n 1 HEAD >> "$logfile"
 
-echo "origin/master is:" >> "$logfile"
-git log -n 1 origin/master >> "$logfile"
+# echo "origin/master is:" >> "$logfile"
+# git log -n 1 origin/master >> "$logfile"
 
-echo "git log between origin/master and HEAD:" >> "$logfile"
-git log origin/master..HEAD >> "$logfile"
+# echo "git log between origin/master and HEAD:" >> "$logfile"
+# git log origin/master..HEAD >> "$logfile"
 
-echo "git diff between origin/master and HEAD:" >> "$logfile"
-git diff origin/master HEAD >> "$logfile"
+# echo "git diff between origin/master and HEAD:" >> "$logfile"
+# git diff origin/master HEAD >> "$logfile"
 echo "================End Wine info================" >> "$logfile"
 
 # Get some bacic info about the graphics setup:

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -x
 
 # Copyright: 2014-2017 Austin English <austinenglish@gmail.com>

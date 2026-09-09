@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #
 # short script to source for running tests under valgrind
 # Usage:
@@ -28,7 +28,16 @@ export WINESERVER="$WINESRC/server/wineserver"
 #export WINETEST_WRAPPER=$HOME/src/valgrind/vg-in-place
 #export WINETEST_WRAPPER=/opt/valgrind/bin/valgrind
 #export WINETEST_WRAPPER=valgrind
-export WINETEST_WRAPPER="timeout --verbose --foreground --kill-after=1m 1h /opt/valgrind/bin/valgrind"
+# export WINETEST_WRAPPER="timeout --verbose --foreground --kill-after=1m 1h /opt/valgrind/bin/valgrind"
+ 
+export WINETEST_WRAPPER="${WINETEST_WRAPPER:-/opt/valgrind/bin/valgrind}"
+if command -v timeout 2>/dev/null; then
+    export WINETEST_WRAPPER="timeout --verbose --foreground --kill-after=1m 1h ${WINETEST_WRAPPER}"
+    timeout_enabled=1
+fi
+
+
+
 
 # suppress known bugs
 export VALGRIND_OPTS="-q --trace-children=yes --track-origins=yes --gen-suppressions=all --suppressions=$WINESRC/tools/valgrind/valgrind-suppressions-ignore --suppressions=$WINESRC/tools/valgrind/valgrind-suppressions-external --suppressions=$WINESRC/tools/valgrind/valgrind-suppressions-known-bugs --suppressions=$WINESRC/tools/valgrind/valgrind-suppressions-gecko --leak-check=full --num-callers=20  --workaround-gcc296-bugs=yes --vex-iropt-register-updates=allregs-at-mem-access"
